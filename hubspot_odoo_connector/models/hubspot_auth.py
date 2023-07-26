@@ -358,7 +358,7 @@ class HubspotConnector(models.Model):
                     "city": rec.city,
                     "zip": rec.zip,
 
-                    "odoo_date": rec.date.strftime('%Y-%m-%dT%H:%M:%SZ'),
+                    "odoo_date": rec.date.strftime('%Y-%m-%dT%H:%M:%SZ') if rec.date else None,
                     "odoo_ref": rec.ref,
                     "odoo_vat": rec.vat,
                     "odoo_active": rec.active,
