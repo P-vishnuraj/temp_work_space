@@ -1,0 +1,25 @@
+<odoo>
+    <record id="pos_discount_template" model="ir.ui.view">
+<!--    inherited record of pos.config to add discount and discount type option    -->
+        <field name="name">pos.discount.template</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@groups='base.group_system']" position="before">
+                <div class="col-12 col-lg-6 o_setting_box" id="other_devices">
+                    <div class="o_setting_left_pane">
+                        <field name="discount"/>
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="discount"/>
+                        <div class="text-muted mb16">
+                            To decide the discount based on amount or percentage.
+                        </div>
+                        <field name="discount_type" widget="radio"
+                            attrs="{'invisible': [('discount', '=', False)]}"/>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

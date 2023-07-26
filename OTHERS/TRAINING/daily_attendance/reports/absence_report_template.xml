@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="absence_report_template">
+<!--   Template for absence report     -->
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <style>
+                    table {
+                    font-family: arial, sans-serif;
+                    border-collapse: collapse;
+                    width: 100%;
+                    }
+                    td, th {
+                    border: 1px solid #dddddd;
+                    text-align: left;
+                    padding: 8px;
+                    }
+                    tr:nth-child(even) {
+                    background-color: #dddddd;
+                    }
+                </style>
+                <table>
+                    <tr>
+                        <th>Employee Name</th>
+                        <th>Department</th>
+                        <th>Date</th>
+                    </tr>
+                    <div t-foreach="absentees" t-as="absentee">
+                        <tr>
+                            <th> <span t-field="absentee.absentee_name"/> </th>
+                            <th> <span t-field="absentee.emp_dept"/> </th>
+                            <th> <span t-field="absentee.absent_date"/> </th>
+                        </tr>
+                    </div>
+                </table>
+            </t>
+        </t>
+    </template>
+</odoo>

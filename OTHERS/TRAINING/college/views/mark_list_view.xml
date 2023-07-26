@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<odoo>
+    <!--  LIST view of [college_semester] -->
+    <record id="mark_list_list_view" model="ir.ui.view">
+        <field name="name">mark.list.list</field>
+        <field name="model">mark.list</field>
+        <field name="arch" type="xml">
+            <tree string="Mark List">
+                <field name="student_name"/>
+                <field name="student_class"/>
+                <field name="course"/>
+                <field name="semester"/>
+                <field name="rank"/>
+                <field name="pass_fail" widget="boolean_toggle"/>
+            </tree>
+        </field>
+    </record>
+    <!-- FORM view of [college_semester] -->
+    <record id="mark_list_form_view" model="ir.ui.view">
+        <field name="name">mark.list.form</field>
+        <field name="model">mark.list</field>
+        <field name="arch" type="xml">
+            <form string="Mark List">
+                <sheet>
+                    <h1>
+                        <field name="student_name" readonly="1" class="mb-5"/>
+                    </h1>
+                    <group>
+                        <group>
+                            <field name="rank"/>
+                            <field name="pass_fail" widget="boolean_toggle"/>
+                        </group>
+                        <group>
+                            <field name="student_class"/>
+                            <field name="course"/>
+                            <field name="semester"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Marks">
+                            <field name="mark_ids">
+                                <tree editable="bottom" create="false" delete="false">
+                                    <field name="subject"/>
+                                    <field name="mark"/>
+                                    <field name="pass_mark"/>
+                                    <field name="max_mark"/>
+                                    <field name="pass_fail" widget="boolean_toggle"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    <div class="oe_subtotal_footer oe_right">
+                        <h2>
+                            <group>
+                                <field name="total" string="Total Mark Scored" force_save="1"/>
+                            </group>
+                        </h2>
+                    </div>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <!--    College.semester Action    -->
+    <record id="mark_list_act" model="ir.actions.act_window">
+        <field name="name">Mark list</field>
+        <field name="res_model">mark.list</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

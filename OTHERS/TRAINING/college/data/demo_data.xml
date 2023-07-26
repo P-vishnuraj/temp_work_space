@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+<!--        for set demo data for models-->
+        # === college_course === #
+        <record id="course_bsc" model="college.course">
+            <field name="id">1</field>
+            <field name="name">BSC</field>
+            <field name="category">UG</field>
+            <field name="duration">3</field>
+            <field name="semester_no">6</field>
+        </record>
+        <record id="course_bca" model="college.course">
+            <field name="id">2</field>
+            <field name="name">BCA</field>
+            <field name="category">UG</field>
+            <field name="duration">3</field>
+            <field name="semester_no">6</field>
+
+        </record>
+        <record id="course_mca" model="college.course">
+            <field name="id">3</field>
+            <field name="name">MCA</field>
+            <field name="category">PG</field>
+            <field name="duration">3</field>
+            <field name="semester_no">6</field>
+        </record>
+        <record id="course_cs-it" model="college.course">
+            <field name="id">4</field>
+            <field name="name">CS-IT</field>
+            <field name="category">Diploma</field>
+            <field name="duration">2</field>
+            <field name="semester_no">4</field>
+        </record>
+        # === college_admission === #
+        <record id="admission_1" model="college.admission">
+            <field name="id">1</field>
+            <field name="first_name">vishnuraj</field>
+            <field name="email">sample_mail@kmail.com</field>
+            <field name="course_id" ref="course_bca"/>
+            <field name="tc" type="base64" file="college/static/img/sample.jpg"/>
+        </record>
+        <record id="admission_2" model="college.admission">
+            <field name="id">2</field>
+            <field name="first_name">alan</field>
+            <field name="email">sample_mail@kmail.com</field>
+            <field name="course_id" ref="course_bca"/>
+            <field name="tc" type="base64" file="college/static/img/sample.jpg"/>
+        </record>
+        <record id="admission_3" model="college.admission">
+            <field name="id">3</field>
+            <field name="first_name">sanal</field>
+            <field name="email">sample_mail@kmail.com</field>
+            <field name="course_id" ref="course_bca"/>
+            <field name="tc" type="base64" file="college/static/img/sample.jpg"/>
+        </record>
+        <record id="admission_4" model="college.admission">
+            <field name="id">4</field>
+            <field name="first_name">hafis</field>
+            <field name="email">sample_mail@kmail.com</field>
+            <field name="course_id" ref="course_bca"/>
+            <field name="tc" type="base64" file="college/static/img/sample.jpg"/>
+        </record>
+        <record id="admission_5" model="college.admission">
+            <field name="id">5</field>
+            <field name="first_name">ashvad</field>
+            <field name="email">sample_mail@kmail.com</field>
+            <field name="course_id" ref="course_bca"/>
+            <field name="tc" type="base64" file="college/static/img/sample.jpg"/>
+        </record>
+        <record id="admission_6" model="college.admission">
+            <field name="id">6</field>
+            <field name="first_name">ayesha</field>
+            <field name="email">sample_mail@kmail.com</field>
+            <field name="course_id" ref="course_bca"/>
+            <field name="tc" type="base64" file="college/static/img/sample.jpg"/>
+        </record>
+        <record id="admission_7" model="college.admission">
+            <field name="id">7</field>
+            <field name="first_name">anagha</field>
+            <field name="email">sample_mail@kmail.com</field>
+            <field name="course_id" ref="course_bca"/>
+            <field name="tc" type="base64" file="college/static/img/sample.jpg"/>
+        </record>
+        <record id="admission_8" model="college.admission">
+            <field name="id">8</field>
+            <field name="first_name">yadhu</field>
+            <field name="email">sample_mail@kmail.com</field>
+            <field name="course_id" ref="course_bca"/>
+            <field name="tc" type="base64" file="college/static/img/sample.jpg"/>
+        </record>
+        # === college_students === #
+        <record id="student_1" model="college.students">
+            <field name="admission_no_id" ref="admission_1"/>
+        </record>
+        <record id="student_2" model="college.students">
+            <field name="admission_no_id" ref="admission_2"/>
+        </record>
+        <record id="student_3" model="college.students">
+            <field name="admission_no_id" ref="admission_3"/>
+        </record>
+        <record id="student_4" model="college.students">
+            <field name="admission_no_id" ref="admission_4"/>
+        </record>
+        <record id="student_5" model="college.students">
+            <field name="admission_no_id" ref="admission_5"/>
+        </record>
+        <record id="student_6" model="college.students">
+            <field name="admission_no_id" ref="admission_6"/>
+        </record>
+        <record id="student_7" model="college.students">
+            <field name="admission_no_id" ref="admission_7"/>
+        </record>
+        <record id="student_8" model="college.students">
+            <field name="admission_no_id" ref="admission_8"/>
+        </record>
+        # === college_semester === #
+        <record id="semester_1" model="college.semester">
+            <field name="sem_no">1</field>
+            <field name="name">Sem1-BCA</field>
+            <field name="course_id" ref="course_bca"/>
+        </record>
+        <record id="semester_2" model="college.semester">
+            <field name="sem_no">2</field>
+            <field name="name">Sem2-BCA</field>
+            <field name="course_id" ref="course_bca"/>
+        </record>
+        <record id="semester_3" model="college.semester">
+            <field name="sem_no">3</field>
+            <field name="name">Sem3-BCA</field>
+            <field name="course_id" ref="course_bca"/>
+        </record>
+        # === college_class === #
+        <record id="class_1" model="college.class">
+            <field name="name">Sem1-BCA-2022</field>
+            <field name="semester_id" ref="semester_1"/>
+            <field name="academic_year">2022</field>
+        </record>
+        <record id="class_2" model="college.class">
+            <field name="name">Sem2-BCA-2022</field>
+            <field name="semester_id" ref="semester_2"/>
+            <field name="academic_year">2022</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<odoo>
+    <!--  LIST view of promotion_class -->
+    <record id="promotion_class_list_view" model="ir.ui.view">
+        <field name="name">promotion.class.list</field>
+        <field name="model">promotion.class</field>
+        <field name="arch" type="xml">
+            <tree string="Promotion Class">
+                <field name="exam_id"/>
+                <field name="class_id"/>
+                <field name="semester"/>
+            </tree>
+        </field>
+    </record>
+    <!--  FORM view of college_class -->
+    <record id="promotion_class_form_view" model="ir.ui.view">
+        <field name="name">promotion.class.list</field>
+        <field name="model">promotion.class</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="generated" invisible="1"/>
+                    <button name="action_generate_promotion" string="generate promotion" type="object"
+                            class="oe_highlight" attrs="{'invisible':[('generated', '=', True)]}"/>
+                    <button name="action_promote_students" string="promote" type="object"
+                            class="oe_highlight" attrs="{'invisible':['|', ('generated', '=', False), ('state', '=', 'complete')]}"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="exam_id"/>
+                        <field name="class_id"/>
+                        <field name="semester"/>
+                    </group>
+                    <notebook>
+                        <page string="Promoted Students">
+                            <field name="promoted_students_ids">
+                                <tree>
+                                    <field name="student_name"/>
+                                    <field name="total"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <!--    Promotion.class Action    -->
+    <record id="promotion_class" model="ir.actions.act_window">
+        <field name="name">Promotion</field>
+        <field name="res_model">promotion.class</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

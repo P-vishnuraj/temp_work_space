@@ -1,0 +1,22 @@
+<odoo>
+    <record id="action_student_marksheet_report" model="ir.actions.report">
+<!--        Student wise report action-->
+        <field name="name">Student Marksheet</field>
+        <field name="model">student.marksheet</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">college.report_marksheet_template</field>
+        <field name="report_file">college.report_marksheet_template</field>
+        <field name="binding_model_id" ref="model_student_marksheet"/>
+        <field name="binding_type">report</field>
+    </record>
+    <record id="action_student_class_report" model="ir.actions.report">
+<!--        class wise report action-->
+        <field name="name">Student Marksheet</field>
+        <field name="model">student.marksheet</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">college.report_class_template</field>
+        <field name="report_file">college.report_class_template</field>
+        <field name="binding_model_id" ref="model_student_marksheet"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

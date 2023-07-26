@@ -1,0 +1,3 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_migration_details,access_migration_details,model_migration_details,base.group_user,1,1,1,1
+access_migrate_purchase,access_migrate_purchase,model_migrate_purchase,base.group_user,1,1,1,1

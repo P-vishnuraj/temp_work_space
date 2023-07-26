@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates id="template_x1" xml:space="preserve">
+<!--    Template carousel for top10 customers-->
+    <t t-name="top_customers.top_10_snippet_carousel">
+        <br/>
+        <div id="course_carousel" class="container carousel slide"
+             data-bs-ride="carousel"
+             t-att-data-bs-interval="interval"
+             style="display: flex; justify-content: space-between; align-items: center;">
+
+            <a t-attf-href="#course_carousel" class="carousel"
+               data-bs-slide="prev"
+               role="button"
+               aria-label="Previous" title="Previous"
+               style="float:left">
+                <span class="fa fa-chevron-circle-left fa-2x"/>
+                <span class="visually-hidden">Previous</span>
+            </a>
+
+            <div class="carousel-inner row w-100 mx-auto" role="listbox">
+                <t t-foreach="chunks" t-as="chunk">
+                    <div t-att-class="chunk.is_active ? 'carousel-item active' : 'carousel-item'">
+                        <div class="row">
+                            <t t-foreach="chunk" t-as="item">
+                                <div class="block span3 col-3">
+                                    <div class="card-group">
+                                        <div class="card">
+                                            <img class="card-img-top"
+                                                 t-attf-src="data:image/png;base64,{{item.image}}"
+                                                 style="padding: 0px; margin: 0px; height: 160px; width:240px;"/>
+                                            <a t-attf-href="/top_customers/{{item.id}}"
+                                               class="btn btn-primary">
+                                                <h5 class="mb-0"><t t-esc="item.partner"/></h5>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </t>
+                        </div>
+                    </div>
+                </t>
+            </div>
+            <a t-attf-href="#course_carousel" class="carousel"
+               data-bs-slide="next"
+               role="button"
+               aria-label="Next"
+               title="Next" align="right"
+               style="float:right;">
+                <span class="fa fa-chevron-circle-right fa-2x"/>
+                <span class="visually-hidden">Next</span>
+            </a>
+        </div>
+        <br/>
+        <br/>
+    </t>
+</templates>

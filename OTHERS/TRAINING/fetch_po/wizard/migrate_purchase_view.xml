@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+<!--   Wizard view for choosing from and to database    -->
+        <record id="migrate_purchase_order_view_form" model="ir.ui.view">
+            <field name="name">migrate.purchase.order.view.form</field>
+            <field name="model">migrate.purchase</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <group>
+                            <field name="url_from"/>
+                            <field name="database_from"/>
+                            <field name="username_from"/>
+                            <field name="password_from"/>
+                        </group>
+                        <group>
+                            <field name="url_to"/>
+                            <field name="database_to"/>
+                            <field name="username_to"/>
+                            <field name="password_to"/>
+                        </group>
+                    </group>
+                </form>
+                <footer>
+                    <button name="action_migrate_records" string="Migrate Records" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </field>
+        </record>
+    </data>
+<!-- Action for migration wizard -->
+    <record id="action_migrate_purchase_po" model="ir.actions.act_window">
+        <field name="name">Purchse Orders Migration</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">migrate.purchase</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="migrate_purchase_order_view_form"/>
+        <field name="target">new</field>
+    </record>
+</odoo>

@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <!--  LIST view of [college_semester] -->
+<!--    <record id="coc_4_list_view" model="ir.ui.view">-->
+<!--        <field name="name">coc.four.list</field>-->
+<!--        <field name="model">coc.four</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <tree>-->
+<!--                <field name="status"/>-->
+<!--            </tree>-->
+<!--        </field>-->
+<!--    </record>-->
+
+
+<!--    &lt;!&ndash; FORM view of [college_semester] &ndash;&gt;-->
+<!--    <record id="form" model="ir.ui.view">-->
+<!--        <field name="name">coc.four.form</field>-->
+<!--        <field name="model">coc.four</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <form>-->
+<!--                <sheet>-->
+<!--                    <group>-->
+<!--                        <field name="status" widget="selection_badge"/>-->
+<!--                    </group>-->
+<!--                </sheet>-->
+<!--                <div class="oe_chatter">-->
+<!--                    <field name="message_follower_ids"/>-->
+<!--                    <field name="message_ids"/>-->
+<!--                </div>-->
+<!--            </form>-->
+<!--        </field>-->
+<!--    </record>-->
+
+
+<!--    &lt;!&ndash;    College.semester Action    &ndash;&gt;-->
+<!--    <record id="action_coc_4" model="ir.actions.act_window">-->
+<!--        <field name="name">COC 4</field>-->
+<!--        <field name="res_model">coc.four</field>-->
+<!--        <field name="view_mode">form</field>-->
+<!--    </record>-->
+
+    <record id="res_partner_product_visibility" model="ir.ui.view">
+        <field name="name">res.partner.product.visibility</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='vat']" position="after">
+                <group name="coc_filed" string="COC">
+                    <field name="coc_field"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

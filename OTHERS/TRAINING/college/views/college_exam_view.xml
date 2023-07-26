@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<odoo>
+    <!--  LIST view of college_exam -->
+    <record id="college_exam_list_view" model="ir.ui.view">
+        <field name="name">college.exam.list</field>
+        <field name="model">college.exam</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" force_save="1"/>
+                <field name="type"/>
+                <field name="class_id"/>
+                <field name="semester"/>
+                <field name="course"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+            </tree>
+        </field>
+    </record>
+    <!-- FORM view of college_exam -->
+    <record id="college_exam_form_view" model="ir.ui.view">
+        <field name="name">college.exam.form</field>
+        <field name="model">college.exam</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="open_generate_mark" string="generate mark list" type="object" class="oe_highlight"/>
+                    <field name="state" widget="statusbar" clickable="True"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="open_valuation"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-address-card">
+                            <field name="valuation" widget="statinfo" string="Valuation"/>
+                        </button>
+                    </div>
+                    <h1>
+                        <field name="name" force_save="1" class="mb-4"/>
+                    </h1>
+                    <group>
+                        <group>
+                            <field name="type"/>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                        </group>
+                        <group>
+                            <field name="class_id" widget="selection"/>
+                            <field name="semester"/>
+                            <field name="course"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="exam_papers" string="Papers">
+                            <field name="papers_ids">
+                                <tree name="papers_tree" string="Papers" editable="bottom">
+                                    <field name="subject"/>
+                                    <field name="pass_mark"/>
+                                    <field name="max_mark"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <!--    College.exam Action    -->
+    <record id="college_exam" model="ir.actions.act_window">
+        <field name="name">Exam</field>
+        <field name="res_model">college.exam</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

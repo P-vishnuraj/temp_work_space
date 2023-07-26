@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<odoo>
+    <!--  LIST view of college_course -->
+    <record id="college_course_list_view" model="ir.ui.view">
+        <field name="name">college.course.list</field>
+        <field name="model">college.course</field>
+        <field name="arch" type="xml">
+            <tree string="College Course">
+                <field name="name"/>
+                <field name="category"/>
+                <field name="duration"/>
+                <field name="semester_no"/>
+            </tree>
+        </field>
+    </record>
+    <!-- FORM view of college_course -->
+    <record id="college_course_form_view" model="ir.ui.view">
+        <field name="name">college.course.form</field>
+        <field name="model">college.course</field>
+        <field name="arch" type="xml">
+            <form string="Matching">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="category"/>
+                            <field name="duration"/>
+                            <field name="semester_no"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Semesters" name="college_semester_page">
+                            <tree>
+                                <field name="semester_ids"/>
+                            </tree>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <!--    College.course Action    -->
+    <record id="college_course" model="ir.actions.act_window">
+        <field name="name">Course</field>
+        <field name="res_model">college.course</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

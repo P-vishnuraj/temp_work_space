@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <menuitem id="coc4" name='coc4' action="action_coc_4" sequence="1"/>
+    <menuitem id="coc_bot" name="coc_bot" parent="coc4" action="action_coc_4" sequence="2"/>
+
+</odoo>

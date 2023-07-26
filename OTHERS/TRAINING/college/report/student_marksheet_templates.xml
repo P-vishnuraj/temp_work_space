@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_marksheet_template">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <style>
+                    table {
+                    font-family: arial, sans-serif;
+                    border-collapse: collapse;
+                    width: 100%;
+                    }
+                    td, th {
+                    border: 1px solid #dddddd;
+                    text-align: left;
+                    padding: 8px;
+                    }
+                    tr:nth-child(even) {
+                    background-color: #dddddd;
+                    }
+                </style>
+                <div t-foreach="lines" t-as="r">
+                    <div>
+                        <center>
+                            <h1><span t-esc="r['student_name']"/>'s Mark Sheet
+                            </h1>
+                            <h4><span t-esc="r['course']"/>-
+                                <span t-esc="r['academic_year']"/>
+                            </h4>
+                        </center>
+                        <b>Exam:</b>
+                        <span t-esc="r['exam']"/>
+                        <br/>
+                        <div>
+                            <b>Result:</b>
+                            <t t-if="r['pass_fail'] == true">PASS</t>
+                            <t t-if="not r['pass_fail']">FAIL</t>
+                        </div>
+                        <br/>
+                    </div>
+                    <table>
+                        <tr>
+                            <th>Subject</th>
+                            <th>Mark</th>
+                            <th>Pass Mark</th>
+                            <th>Pass/Fail</th>
+                        </tr>
+                        <div t-foreach="details" t-as="d">
+                            <t t-if="d['marklist_id'] == r['id']">
+                                <tr>
+                                    <td>
+                                        <div t-esc="d['subject']"/>
+                                    </td>
+                                    <td>
+                                        <div t-esc="d['mark']"/>
+                                    </td>
+                                    <td>
+                                        <div t-esc="d['pass_mark']"/>
+                                    </td>
+                                    <td>
+                                        <t t-if="d['pass_fail'] == 1">
+                                            <div>PASS</div>
+                                        </t>
+                                        <t t-if="not d['pass_fail']">
+                                            <div>FAIL</div>
+                                        </t>
+                                    </td>
+                                </tr>
+                            </t>
+                        </div>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

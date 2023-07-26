@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<odoo>
+    <!--  LIST view of [college_semester] -->
+    <record id="college_semester_list_view" model="ir.ui.view">
+        <field name="name">college.semester.list</field>
+        <field name="model">college.semester</field>
+        <field name="arch" type="xml">
+            <tree string="College Course">
+                <field name="name"/>
+                <field name="sem_no"/>
+                <field name="course_id"/>
+            </tree>
+        </field>
+    </record>
+    <!-- FORM view of [college_semester] -->
+    <record id="college_semester_form_view" model="ir.ui.view">
+        <field name="name">college.semester.form</field>
+        <field name="model">college.semester</field>
+        <field name="arch" type="xml">
+            <form string="Semester">
+                <sheet>
+                    <group>
+                        <field name="name" readonly="1" force_save="1"/>
+                        <field name="sem_no"/>
+                        <field name="course_id"/>
+                    </group>
+                    <notebook>
+                        <page string="Syllabus" name="semester_syllabus">
+                            <field name="syllabus_ids">
+                                <tree string="Syllabus" editable="bottom">
+                                    <field name="subject"/>
+                                    <field name="pass_mark"/>
+                                    <field name="max_mark"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <!--    College.semester Action    -->
+    <record id="college_semester" model="ir.actions.act_window">
+        <field name="name">Semester</field>
+        <field name="res_model">college.semester</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

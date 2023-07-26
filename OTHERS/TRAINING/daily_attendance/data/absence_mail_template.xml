@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="email_absentees" model="mail.template">
+<!--            Email template for send Absentees to their managers-->
+            <field name="name">Sent Absence Report</field>
+            <field name="model_id" ref="daily_attendance.model_daily_absence"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="subject">Absence Report</field>
+            <field name="body_html" type="html">
+                <p>Mr. Manager pls followup these absentees</p>
+            </field>
+        </record>
+    </data>
+</odoo>

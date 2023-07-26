@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<odoo>
+    <!--  LIST view of college_admission -->
+    <record id="college_admission_list_view" model="ir.ui.view">
+        <field name="name">college.admission.list</field>
+        <field name="model">college.admission</field>
+        <field name="arch" type="xml">
+            <tree string="Chart of accounts">
+                <field name="first_name"/>
+                <field name="last_name"/>
+                <field name="fathers_name"/>
+                <field name="mothers_name"/>
+                <field name="application_date"/>
+                <field name="academic_year"/>
+                <field name="previous_qualification"/>
+            </tree>
+        </field>
+    </record>
+    <!-- FORM view of college_admission -->
+    <record id="college_admission_form_view" model="ir.ui.view">
+        <field name="name">college.admission.form</field>
+        <field name="model">college.admission</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="confirm_action" string="Confirm" type="object" class="oe_highlight"
+                    attrs="{'invisible': [('state', '=', 'done')]}"/>
+                    <button name="reject_action" string="Reject" type="object"
+                            attrs="{'invisible': [('state', '!=', 'application')]}"/>
+                    <field name="state" widget="statusbar" clickable="True"/>
+                </header>
+                <sheet>
+                    <h1>
+                        <field name="reference_no" class="mb-4"/>
+                    </h1>
+                    <group>
+                        <group>
+                            <field name="first_name"/>
+                            <field name="last_name"/>
+                            <field name="fathers_name"/>
+                            <field name="mothers_name"/>
+                            <field name="communication_address"/>
+                            <field name="same_as"/>
+                            <field name="permanent_address"
+                                   attrs="{'invisible': [('same_as', '=', True)]}"/>
+                            <field name="phone_no"/>
+                            <field name="email" widget="email"/>
+                        </group>
+                        <group>
+                            <field name="course_id" widget="selection"/>
+                            <field name="application_date"/>
+                            <field name="academic_year"/>
+                            <field name="previous_qualification"/>
+                            <field name="college_name"/>
+                            <field name="tc"/>
+                            <field name="sale_order_id"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <!--    College.admission Action    -->
+    <record id="college_admission" model="ir.actions.act_window">
+        <field name="name">Admission</field>
+        <field name="res_model">college.admission</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

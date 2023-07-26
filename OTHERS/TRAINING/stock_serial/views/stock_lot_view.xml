@@ -1,0 +1,16 @@
+<odoo>
+    <record id="stock_lot_view_form" model="ir.ui.view">
+        <field name="name">stock.lot.form</field>
+        <field name="model">stock.lot</field>
+        <field name="inherit_id" ref="stock.view_production_lot_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="before">
+                <header>
+                    <button name="action_import_doc" string="import" type="object"
+                            class="oe_highlight" icon="fa-cloud-download"/>
+                </header>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

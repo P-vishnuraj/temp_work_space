@@ -11,11 +11,13 @@
                 <sheet>
                     <field name="connection" attrs="{'invisible': 1}"/>
                     <div name="button_box" position="inside">
-                        <button class="oe_stat_button" type="object" name="action_connect"
+                        <button class="oe_stat_button" type="object"
+                                name="action_connect"
                                 attrs="{'invisible': [('connection', '=', True)]}"
                                 icon="fa-link" string="CONNECT">
                         </button>
-                        <button class="oe_stat_button" type="object" name="action_connect"
+                        <button class="oe_stat_button" type="object"
+                                name="action_connect"
                                 attrs="{'invisible': [('connection', '=', False)]}"
                                 icon="fa-link" string="CONNECTED">
                         </button>
@@ -30,11 +32,14 @@
                     </div>
                     <group>
                         <group string="Authorization">
-                            <field name="owner_id" attrs="{'readonly': [('connection', '=', True)]}"/>
-                            <field name="access_key" attrs="{'readonly': [('connection', '=', True)]}"/>
+                            <field name="owner_id"
+                                   attrs="{'readonly': [('connection', '=', True)]}"/>
+                            <field name="access_key"
+                                   attrs="{'readonly': [('connection', '=', True)]}"/>
                         </group>
                     </group>
-                    <notebook>
+                    <notebook
+                            attrs="{'invisible': [('connection', '=', False)]}">
                         <page string=" Sync Contacts">
                             <group>
                                 <group>
@@ -65,7 +70,9 @@
                                             type="object"
                                             icon="fa-exchange"
                                             string="SyncContact"
-                                            class="btn btn-outline-dark"/>
+                                            class="btn btn-outline-dark"
+                                            attrs="{'invisible': [('export_contacts', '=', False),('import_contacts', '=', False),('update_odoo_contacts', '=', False),('update_hub_contacts', '=', False)]}"
+                                    />
                                 </group>
                             </group>
                         </page>
@@ -95,7 +102,9 @@
                                             type="object"
                                             icon="fa-exchange"
                                             string="SyncCompany"
-                                            class="btn btn-outline-dark"/>
+                                            class="btn btn-outline-dark"
+                                            attrs="{'invisible': [('export_company', '=', False),('import_company', '=', False),('update_odoo_company', '=', False),('update_hub_company', '=', False)]}"
+                                    />
                                 </group>
                             </group>
                         </page>
@@ -125,40 +134,42 @@
                                             type="object"
                                             icon="fa-exchange"
                                             string="SyncDeals"
-                                            class="btn btn-outline-dark"/>
+                                            class="btn btn-outline-dark"
+                                            attrs="{'invisible': [('export_deals', '=', False),('import_deals', '=', False),('update_odoo_deals', '=', False),('update_hub_deals', '=', False)]}"
+                                    />
                                 </group>
                             </group>
                         </page>
                         <page string="Sync Invoice">
-<!--                            <group>-->
-<!--                                <group>-->
-<!--                                    <field name="import_invoices"/>-->
-<!--                                    <field name="export_invoices"/>-->
-<!--                                </group>-->
-<!--                                <group>-->
-<!--                                    <button name="action_import_invoice"-->
-<!--                                            type="object"-->
-<!--                                            string="Import Invoices"-->
-<!--                                            attrs="{'invisible': [('import_invoices', '=', False)]}"-->
-<!--                                            class="btn-outline-primary"-->
-<!--                                            groups="hubspot_odoo_connector.group_hubspot_manager"-->
-<!--                                    />-->
-<!--                                </group>-->
-<!--                                <br/>-->
-<!--                                <group>-->
-<!--                                    <field name="last_invoice_import_date"/>-->
-<!--                                    <field name="last_invoice_export_date"/>-->
-<!--                                </group>-->
-<!--                                <group>-->
-<!--                                    <button name="action_export_invoice"-->
-<!--                                            type="object"-->
-<!--                                            string="Export Invoices"-->
-<!--                                            attrs="{'invisible': [('export_invoices', '=', False)]}"-->
-<!--                                            class="btn-outline-primary"-->
-<!--                                            groups="hubspot_odoo_connector.group_hubspot_manager"-->
-<!--                                    />-->
-<!--                                </group>-->
-<!--                            </group>-->
+                            <!--                            <group>-->
+                            <!--                                <group>-->
+                            <!--                                    <field name="import_invoices"/>-->
+                            <!--                                    <field name="export_invoices"/>-->
+                            <!--                                </group>-->
+                            <!--                                <group>-->
+                            <!--                                    <button name="action_import_invoice"-->
+                            <!--                                            type="object"-->
+                            <!--                                            string="Import Invoices"-->
+                            <!--                                            attrs="{'invisible': [('import_invoices', '=', False)]}"-->
+                            <!--                                            class="btn-outline-primary"-->
+                            <!--                                            groups="hubspot_odoo_connector.group_hubspot_manager"-->
+                            <!--                                    />-->
+                            <!--                                </group>-->
+                            <!--                                <br/>-->
+                            <!--                                <group>-->
+                            <!--                                    <field name="last_invoice_import_date"/>-->
+                            <!--                                    <field name="last_invoice_export_date"/>-->
+                            <!--                                </group>-->
+                            <!--                                <group>-->
+                            <!--                                    <button name="action_export_invoice"-->
+                            <!--                                            type="object"-->
+                            <!--                                            string="Export Invoices"-->
+                            <!--                                            attrs="{'invisible': [('export_invoices', '=', False)]}"-->
+                            <!--                                            class="btn-outline-primary"-->
+                            <!--                                            groups="hubspot_odoo_connector.group_hubspot_manager"-->
+                            <!--                                    />-->
+                            <!--                                </group>-->
+                            <!--                            </group>-->
                         </page>
                     </notebook>
                 </sheet>

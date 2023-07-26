@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<odoo>
+    <!--  LIST view of college_students -->
+    <record id="college_students_list_view" model="ir.ui.view">
+        <field name="name">college.student.list</field>
+        <field name="model">college.students</field>
+        <field name="arch" type="xml">
+            <tree string="College Students">
+                <field name="admission_no_id"/>
+                <field name="admission_date"/>
+                <field name="first_name"/>
+                <field name="last_name"/>
+                <field name="fathers_name"/>
+                <field name="mothers_name"/>
+                <field name="phone_no"/>
+                <field name="email"/>
+            </tree>
+        </field>
+    </record>
+    <!-- FORM view of college_students -->
+    <record id="college_students_form_view" model="ir.ui.view">
+        <field name="name">college.student.form</field>
+        <field name="model">college.students</field>
+        <field name="arch" type="xml">
+            <form string="College Students">
+                <header>
+                    <button name="sent_mail" type="object" string="sent by mail" class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="admission_no_id" widget="selection" force_save="1"/>
+                            <field name="admission_date" force_save="1"/>
+                            <field name="first_name" force_save="1"/>
+                            <field name="last_name" force_save="1"/>
+                            <field name="fathers_name" force_save="1"/>
+                            <field name="mothers_name" force_save="1"/>
+                        </group>
+                        <group>
+                            <field name="communication_address" force_save="1"/>
+                            <field name="same_as" force_save="1"/>
+                            <field name="permanent_address"
+                                   attrs="{'invisible': [('same_as', '=', True)]}"/>
+                            <field name="phone_no" force_save="1"/>
+                            <field name="email" widget="email" force_save="1"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <!--    College.students Action    -->
+    <record id="college_students" model="ir.actions.act_window">
+        <field name="name">Students</field>
+        <field name="res_model">college.students</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

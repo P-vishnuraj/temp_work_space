@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <!--    -->
+    <record model="ir.module.category" id="base.module_category_material">
+        <field name="description">User access level for material request module</field>
+        <field name="sequence">1</field>
+    </record>
+
+
+    <!--  Users  -->
+    <record id="material_user" model="res.groups">
+        <field name="name">User</field>
+        <field name="category_id" ref="base.module_category_material"/>
+    </record>
+    <record id="material_manager" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="category_id" ref="base.module_category_material"/>
+    </record>
+    <record id="material_dept_head" model="res.groups">
+        <field name="name">Department Head</field>
+        <field name="category_id" ref="base.module_category_material"/>
+    </record>
+
+</odoo>

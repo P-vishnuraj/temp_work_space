@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <!--  LIST view of daily.absence -->
+    <record id="daily_absence_list_view" model="ir.ui.view">
+        <field name="name">daily.absence.list</field>
+        <field name="model">daily.absence</field>
+        <field name="arch" type="xml">
+            <tree string="Daily Absence">
+                <field name="absentee_name"/>
+                <field name="emp_dept"/>
+                <field name="absent_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- FORM view of daily.absence -->
+    <record id="daily_absence_form_view" model="ir.ui.view">
+        <field name="name">daily.absence.form</field>
+        <field name="model">daily.absence</field>
+        <field name="arch" type="xml">
+            <form string="Absentees">
+                <sheet>
+                    <group>
+                        <field name="absentee_name"/>
+                        <field name="absent_date"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!--  SEARCH view of daily.absence -->
+    <record id="daily_absence_search_view" model="ir.ui.view">
+        <field name="name">daily.absence.search</field>
+        <field name="model">daily.absence</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="absentee_name"
+                       filter_domain="['|', ('absentee_name','ilike',self), ('absent_date','ilike',self)]"/>
+                <field name="absent_date"
+                       filter_domain="['|', ('absentee_name','ilike',self), ('absent_date','ilike',self)]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Absent" name="day_wise_group" context="{'group_by':'absent_date:day'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!--    Daily Absence Action    -->
+    <record id="daily_absence_action" model="ir.actions.act_window">
+        <field name="name">Daily Absence</field>
+        <field name="res_model">daily.absence</field>
+        <field name="context">{'search_default_day_wise_group': 1}</field>
+        <field name="view_mode">tree</field>
+    </record>
+</odoo>

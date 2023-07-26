@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<odoo>
+    <menuitem
+            id="daily_absence_menu"
+            name="Absence"
+            parent="hr_attendance.menu_hr_attendance_root"
+            action="daily_absence_action"
+            sequence="11"
+    />
+</odoo>

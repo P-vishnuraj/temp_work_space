@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="web_admission_temp">
+<!--        Online admission form template-->
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure oe_empty">
+                <section class="s_website_form" data-vcss="001" data-snippet="s_website_form">
+                    <div class="container">
+                        <form action="/admission/submit/" method="post" enctype="multipart/form-data"
+                              class="o_mark_required" data-mark="*" data-model_name="" data-success-page="">
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                            <div class="s_website_form_rows row s_col_no_bgcolor">
+                                <br/>
+                                <div class="form-group col-12 s_website_form_field s_website_form_required"
+                                     data-type="char" data-name="Field">
+                                    <div class="row s_col_no_resize s_col_no_bgcolor">
+                                        <label class="col-form-label col-sm-auto s_website_form_label"
+                                               style="width: 200px" for="studio1">
+                                            <span class="s_website_form_label_content">First Name</span>
+                                            <span class="s_website_form_mark">*</span>
+                                        </label>
+                                        <div class="col-sm">
+                                            <input id="first_name" type="text" class="form-control s_website_form_input"
+                                                   name="first_name" required="1"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="form-group col-12 s_website_form_field s_website_form_required"
+                                     data-type="char" data-name="Field">
+                                    <div class="row s_col_no_resize s_col_no_bgcolor">
+                                        <label class="col-form-label col-sm-auto s_website_form_label"
+                                               style="width: 200px" for="studio1">
+                                            <span class="s_website_form_label_content">Last Name</span>
+                                        </label>
+                                        <div class="col-sm">
+                                            <input id="last_name" type="text" class="form-control s_website_form_input"
+                                                   name="last_name"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="form-group col-12 s_website_form_field s_website_form_required"
+                                     data-type="char" data-name="Field">
+                                    <div class="row s_col_no_resize s_col_no_bgcolor">
+                                        <label class="col-form-label col-sm-auto s_website_form_label"
+                                               style="width: 200px" for="studio1">
+                                            <span class="s_website_form_label_content">Father's Name</span>
+                                        </label>
+                                        <div class="col-sm">
+                                            <input id="fathers_name" type="text"
+                                                   class="form-control s_website_form_input"
+                                                   name="fathers_name"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="form-group col-12 s_website_form_field s_website_form_required"
+                                     data-type="char" data-name="Field">
+                                    <div class="row s_col_no_resize s_col_no_bgcolor">
+                                        <label class="col-form-label col-sm-auto s_website_form_label"
+                                               style="width: 200px" for="studio1">
+                                            <span class="s_website_form_label_content">Mother's Name</span>
+                                        </label>
+                                        <div class="col-sm">
+                                            <input id="mothers_name" type="text"
+                                                   class="form-control s_website_form_input"
+                                                   name="mothers_name" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="form-group col-12 s_website_form_field s_website_form_required"
+                                     data-type="char" data-name="Field">
+                                    <div class="row s_col_no_resize s_col_no_bgcolor">
+                                        <label class="col-form-label col-sm-auto s_website_form_label"
+                                               style="width: 200px" for="studio1">
+                                            <span class="s_website_form_label_content">Communication Address</span>
+                                        </label>
+                                        <div class="col-sm">
+                                            <textarea rows="2" cols="30" class="form-control s_website_form_input"
+                                                      id="communication_address" name="communication_address"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="form-group col-12 s_website_form_field s_website_form_required"
+                                     data-type="char" data-name="Field">
+                                    <div class="row s_col_no_resize s_col_no_bgcolor">
+                                        <label class="col-form-label col-sm-auto s_website_form_label"
+                                               style="width: 200px" for="studio1">
+                                            <span class="s_website_form_label_content">Same as above</span>
+                                        </label>
+                                        <div class="col-sm">
+                                            <input class="same_as" id="same_as" type="checkbox"
+                                                   name="same_as"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="form-group col-12 s_website_form_field s_website_form_required"
+                                     data-type="char" data-name="Field" id="permanent_address">
+                                    <div class="row s_col_no_resize s_col_no_bgcolor">
+                                        <label class="col-form-label col-sm-auto s_website_form_label"
+                                               style="width: 200px" for="studio1">
+                                            <span class="s_website_form_label_content">Permanent Address</span>
+                                        </label>
+                                        <div class="col-sm">
+                                            <textarea rows="2" cols="30" class="form-control s_website_form_input"
+                                                      id="permanent_address" name="permanent_address"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="form-group col-12 s_website_form_field s_website_form_required"
+                                     data-type="char" data-name="Field">
+                                    <div class="row s_col_no_resize s_col_no_bgcolor">
+                                        <label class="col-form-label col-sm-auto s_website_form_label"
+                                               style="width: 200px" for="studio1">
+                                            <span class="s_website_form_label_content">Phone</span>
+                                        </label>
+                                        <div class="col-sm">
+                                            <input id="phone_no" type="tel" pattern="[789][0-9]{9}" class="form-control s_website_form_input"
+                                                   name="phone_no" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="form-group col-12 s_website_form_field s_website_form_required"
+                                     data-type="char" data-name="Field">
+                                    <div class="row s_col_no_resize s_col_no_bgcolor">
+                                        <label class="col-form-label col-sm-auto s_website_form_label"
+                                               style="width: 200px" for="studio1">
+                                            <span class="s_website_form_label_content">Email</span>
+                                            <span class="s_website_form_mark">*</span>
+                                        </label>
+                                        <div class="col-sm">
+                                            <input id="email" type="email" class="form-control s_website_form_input"
+                                                   name="email" required="1"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="form-group col-12 s_website_form_field s_website_form_required"
+                                     data-type="char" data-name="Field">
+                                    <div class="row s_col_no_resize s_col_no_bgcolor">
+                                        <label class="col-form-label col-sm-auto s_website_form_label"
+                                               style="width: 200px" for="studio1">
+                                            <span class="s_website_form_label_content">Course</span>
+                                            <span class="s_website_form_mark">*</span>
+                                        </label>
+                                        <div class="col-sm">
+                                            <select class="form-control s_website_form_input"
+                                                    name="course_id" id="course_id">
+                                                <div t-foreach="course" t-as="c">
+                                                    <option t-att-value="c.id"><span t-esc="c.name"/></option>
+                                                </div>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="form-group col-12 s_website_form_field s_website_form_required"
+                                     data-type="char" data-name="Field">
+                                    <div class="row s_col_no_resize s_col_no_bgcolor">
+                                        <label class="col-form-label col-sm-auto s_website_form_label"
+                                               style="width: 200px" for="studio1">
+                                            <span class="s_website_form_label_content">Date of Application</span>
+                                        </label>
+                                        <div class="col-sm">
+                                            <input id="application_date" type="date"
+                                                   class="form-control s_website_form_input" name="application_date"
+                                                   />
+                                        </div>
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="form-group col-12 s_website_form_field s_website_form_required"
+                                     data-type="char" data-name="Field">
+                                    <div class="row s_col_no_resize s_col_no_bgcolor">
+                                        <label class="col-form-label col-sm-auto s_website_form_label"
+                                               style="width: 200px" for="studio1">
+                                            <span class="s_website_form_label_content">Academic year</span>
+                                        </label>
+                                        <div class="col-sm">
+                                            <input id="academic_year" type="text"
+                                                   class="form-control s_website_form_input" name="academic_year"
+                                                   />
+                                        </div>
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="form-group col-12 s_website_form_field s_website_form_required"
+                                     data-type="char" data-name="Field">
+                                    <div class="row s_col_no_resize s_col_no_bgcolor">
+                                        <label class="col-form-label col-sm-auto s_website_form_label"
+                                               style="width: 200px" for="studio1">
+                                            <span class="s_website_form_label_content">Previous Qualification</span>
+                                        </label>
+                                        <div class="col-sm">
+                                            <select class="form-control s_website_form_input"
+                                                    name="previous_qualification" id="previous_qualification">
+                                                <option value="HS">Higher Secondary</option>
+                                                <option value="UG">Under Graduate</option>
+                                                <option value="PG">Post Graduate</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="form-group col-12 s_website_form_field s_website_form_required"
+                                     data-type="char" data-name="Field">
+                                    <div class="row s_col_no_resize s_col_no_bgcolor">
+                                        <label class="col-form-label col-sm-auto s_website_form_label"
+                                               style="width: 200px" for="studio1">
+                                            <span class="s_website_form_label_content">Name of Institution</span>
+                                        </label>
+                                        <div class="col-sm">
+                                            <input id="college_name" type="text"
+                                                   class="form-control s_website_form_input" name="college_name"
+                                                   />
+                                        </div>
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="form-group col-12 s_website_form_field s_website_form_required"
+                                     data-type="char" data-name="Field">
+                                    <div class="row s_col_no_resize s_col_no_bgcolor">
+                                        <label class="col-form-label col-sm-auto s_website_form_label"
+                                               style="width: 200px" for="studio1">
+                                            <span class="s_website_form_label_content">Attach your TC here.</span>
+                                            <span class="s_website_form_mark">*</span>
+                                        </label>
+                                        <div class="col-sm">
+                                            <input id="tc" type="file"
+                                                   class="form-control s_website_form_input" name="tc"
+                                                   required="1" accept="image/*,application/pdf"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <div class="form-group col-12 s_website_form_submit" data-name="Submit Button">
+                                    <div style="width: 200px;" class="s_website_form_label"/>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </t>
+    </template>
+</odoo>

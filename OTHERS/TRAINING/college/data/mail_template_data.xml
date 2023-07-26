@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="email_admission_details" model="mail.template">
+<!--            Email template for sent admission details to applicant-->
+            <field name="name">Sent admission details</field>
+            <field name="model_id" ref="college.model_college_students"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="email_from">{{user.email}}</field>
+            <field name="email_to">{{object.email}}</field>
+            <field name="subject">Congrats..</field>
+            <field name="body_html" type="html">
+                <p>
+                    <br/>
+                    <br/>
+                    <h3>
+                        <br>Congrats <t t-out="object.first_name"/><t t-out="object.last_name"/>, welcome to _____college family</br>
+                        <br>your admission no is <t t-out="object.admission_no_id"/></br>
+                        <br>joining date is 01/01/2024</br>
+                        <br>with regards ______college</br>
+                        <br>save it for later</br>
+                    </h3>
+                    <br/>
+                </p>
+                <br/>
+            </field>
+        </record>
+        <record id="email_admission_rejected" model="mail.template">
+<!--            Email template for send reject message to applicant-->
+            <field name="name">Sent Rejected Message</field>
+            <field name="model_id" ref="college.model_college_admission"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="email_from">{{user.email}}</field>
+            <field name="email_to">{{object.email}}</field>
+            <field name="subject">Sorry to Inform</field>
+            <field name="body_html" type="html">
+                <p>
+                    <br/>
+                    <br/>
+                    <h3>
+                        <br>Mr/Mrs: <t t-out="object.first_name"/><t t-out="object.last_name"/>, </br>
+                        <br>Sorry to inform that</br>
+                        <br>your admission is rejected</br>
+                        <br>better luck next time</br>
+                        <br>with regards ______college</br>
+                    </h3>
+                    <br/>
+                </p>
+                <br/>
+            </field>
+        </record>
+    </data>
+</odoo>

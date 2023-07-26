@@ -1,0 +1,4 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_commission_plan,access_commission_plan,model_commission_plan,base.group_user,1,1,1,1
+access_product_plan,access_product_plan,model_product_plan,base.group_user,1,1,1,1
+access_graduated_plan,access_graduated_plan,model_graduated_plan,base.group_user,1,1,1,1

@@ -1,0 +1,12 @@
+<odoo>
+    <record id="action_absence_report" model="ir.actions.report">
+<!--    action to create daily absentees report    -->
+        <field name="name">Daily Absence</field>
+        <field name="model">daily.absence</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">daily_attendance.absence_report_template</field>
+        <field name="report_file">daily_attendance.absence_report_template</field>
+        <field name="binding_model_id" ref="model_daily_absence"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

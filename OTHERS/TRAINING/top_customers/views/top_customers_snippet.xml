@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<odoo>
+    <template id="basic_snippet" name="Top Customers">
+        <!--        Static part of snippet-->
+        <section class="container dynamic_snippet_blog">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 id="test">Top Customers</h1>
+                    Top customers who buy most:
+                    <span id="top10"/>
+                    <div id="carousel">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <template id="external_snippets" inherit_id="website.snippets" priority="8">
+        <!--        extending snippet-->
+        <xpath expr="//div[@id='snippet_effect']//t[@t-snippet][last()]"
+               position="after">
+            <t t-snippet="top_customers.basic_snippet"
+               t-thumbnail="/top_customers/static/img/snippets/top_10.png"/>
+        </xpath>
+    </template>
+
+    <template id="customer_details" name="Product Detail">
+        <!--        Customer details template-->
+        <t t-call="website.layout">
+            <div class="container">
+                <div class="oe_structure"/>
+                <div class="row g-3">
+                    <h2 class="text-center">
+                        <t t-esc="partner.name"/>
+                    </h2>
+                </div>
+                    <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="text-center">
+
+                            <t t-if="not partner.image_1920">
+                                <img style='display:block; width:150px;height:150px;'
+                                     id='base64image'
+                                     t-att-src="image_data_uri(partner.avatar_128)"/>
+                            </t>
+                            <t t-else="">
+                                <img style='display:block; width:150px;height:150px;'
+                                     id='base64image'
+                                     t-att-src="image_data_uri(partner.image_1920)"/>
+                            </t>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="control-label col-sm-4">Address</label>
+                        <textarea rows="4" type="text"
+                                  class="form-control col-sm-6"
+                                  aria-label="First name"
+                                  t-att-value="partner.street" readonly="true">
+                            <t t-esc="partner.street"/>
+                            <t t-esc="partner.zip"/>
+                            <t t-esc="partner.city"/>
+                            <t t-esc="partner.state_id.name"/>
+                            <t t-esc="partner.country_id.name"/>
+                        </textarea>
+                    </div>
+                </div>
+                <br/>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="control-label col-sm-4">Tax ID</label>
+                        <input type="text" class="form-control col-sm-6"
+                               aria-label="First name"
+                               t-att-value="partner.vat" readonly="true"/>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="control-label col-sm-4">Phone</label>
+                        <input type="text" class="form-control col-sm-2"
+                               aria-label="Last name"
+                               t-att-value="partner.phone" readonly="true"/>
+                    </div>
+                </div>
+                <br/>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="control-label col-sm-4">Email</label>
+                        <input type="text" class="form-control col-sm-6"
+                               aria-label="First name"
+                               t-att-value="partner.email" readonly="true"/>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="control-label col-sm-4">Mobile</label>
+                        <input type="text" class="form-control col-sm-2"
+                               aria-label="Last name"
+                               t-att-value="partner.mobile" readonly="true"/>
+                    </div>
+                </div>
+                <br/>
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <label class="control-label col-sm-4">Website</label>
+                        <input type="text" class="form-control col-sm-2"
+                               aria-label="Last name"
+                               t-att-value="partner.website" readonly="true"/>
+                    </div>
+                </div>
+            </div>
+            <br/>
+        </t>
+    </template>
+</odoo>

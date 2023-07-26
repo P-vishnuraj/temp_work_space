@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+<!-- custom template for both clear each orderline button and clear all button -->
+    <t t-name="OrderLineRemove" t-inherit="point_of_sale.Orderline"
+       t-inherit-mode="extension" owl="1">
+<!--    inherits orderline in product screen and adding close button to each line    -->
+        <xpath expr="//span[hasclass('product-name')]" position="before">
+            <span style="padding-left: 465px;">
+                    <i class="fa fa-times" t-on-click="_clearLine" />
+            </span>
+        </xpath>
+    </t>
+    <t t-name="OrderLineClear" t-inherit="point_of_sale.OrderSummary"
+       t-inherit-mode="extension" owl="1">
+<!--    inherits order summary in product screen and adding clear all button    -->
+        <xpath expr="//div[hasclass('summary')]" position="after">
+            <button type="button" t-on-click="_clearAll" >CLEAR ALL</button>
+        </xpath>
+    </t>
+</templates>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<odoo>
+    <menuitem id="college" name='College' action="college_students" sequence="1"/>
+    <menuitem id="students" name="Students" parent="college" action="college_students" sequence="1"/>
+    <menuitem id="admission" name="Admission" parent="college" action="college_admission" sequence="2"/>
+    <menuitem id="class" name="Class" parent="college" action="college_class" sequence="3"/>
+    <menuitem id="exam_menu" name="Exam menu" parent="college" sequence="4">
+        <menuitem id="exam" action="college_exam"/>
+        <menuitem id="promotion" action="promotion_class"/>
+    </menuitem>
+    <menuitem id="report" name='Reports' parent="college" sequence="5">
+        <menuitem id="student_marksheet" action="action_student_marksheet"/>
+    </menuitem>
+    <menuitem id="configuration" name='Configuration' parent="college" sequence="6">
+        <menuitem id="Course" action="college_course"/>
+        <menuitem id="Semester" action="college_semester"/>
+    </menuitem>
+</odoo>

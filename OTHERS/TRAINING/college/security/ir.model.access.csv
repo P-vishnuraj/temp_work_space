@@ -1,0 +1,14 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_college_students,access_college_students,model_college_students,base.group_user,1,1,1,1
+access_college_course,access_college_course,model_college_course,base.group_user,1,1,1,1
+access_college_admission,access_college_name,model_college_admission,base.group_user,1,1,1,1
+access_college_semester,access_college_semester,model_college_semester,base.group_user,1,1,1,1
+access_semester_syllabus,access_semester_syllabus,model_semester_syllabus,base.group_user,1,1,1,1
+access_college_class,access_college_class,model_college_class,base.group_user,1,1,1,1
+access_college_exam,access_college_exam,model_college_exam,base.group_user,1,1,1,1
+access_mark_list,access_mark_list,model_mark_list,base.group_user,1,1,1,1
+access_mark_details,access_mark_details,model_mark_details,base.group_user,1,1,1,1
+access_promotion_class,access_promotion_class,model_promotion_class,base.group_user,1,1,1,1
+
+access_student_marksheet,access_student_marksheet,model_student_marksheet,base.group_user,1,1,1,1
+

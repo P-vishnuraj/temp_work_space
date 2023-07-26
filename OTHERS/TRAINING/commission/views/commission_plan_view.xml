@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <!--  LIST view of commission.plan -->
+    <record id="commission_plan_list_view" model="ir.ui.view">
+        <field name="name">commission.plan.list</field>
+        <field name="model">commission.plan</field>
+        <field name="arch" type="xml">
+            <tree string="Commission Plan">
+                <field name="name"/>
+                <field name="from_date"/>
+                <field name="to_date"/>
+                <field name="plan_type"/>
+                <field name="activate" widget="boolean_toggle"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- FORM view of material.request -->
+    <record id="commission_plan_form_view" model="ir.ui.view">
+        <field name="name">commission.plan.form</field>
+        <field name="model">commission.plan</field>
+        <field name="arch" type="xml">
+            <form string="Commission Plan">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" class="mb-4"/>
+                            <field name="from_date" widget="daterange" options="{'related_end_date': 'to_date'}"/>
+                            <field name="to_date" widget="daterange" options="{'related_start_date': 'from_date'}"/>
+                        </group>
+                        <group>
+                            <field name="activate" widget="boolean_toggle" class="mb-4"/>
+                            <field name="plan_type"/>
+                            <field name="revenue_type" attrs="{'invisible': [('plan_type', '!=', 'revenue')]}"/>
+                            <field name="percent" attrs="{'invisible': ['|',('revenue_type', '!=', 'straight'), ('plan_type', '!=', 'revenue')]}"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Product plan" attrs="{'invisible': [('plan_type', '!=', 'product')]}">
+                            <field name="product_wise_ids">
+                                <tree editable="bottom">
+                                    <field name="prod_category_id"/>
+                                    <field name="product_id"/>
+                                    <field name="percent"/>
+                                    <field name="max_amount"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Graduated plan"
+                              attrs="{'invisible': ['|', ('plan_type', '!=', 'revenue'), ('revenue_type', '!=', 'graduated')]}">
+                            <field name="graduated_ids">
+                                <tree editable="top">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="amount_from"/>
+                                    <field name="amount_to"/>
+                                    <field name="rate"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+
+    <!--    commission.plan Action    -->
+    <record id="commission_plan_action" model="ir.actions.act_window">
+        <field name="name">Commission Plan</field>
+        <field name="res_model">commission.plan</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>
+
+

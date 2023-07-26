@@ -152,7 +152,6 @@ class HubspotConnector(models.Model):
                     data = response.json()
                     if str(data[0]['ownerId']) == self.owner_id:
                         self.connection = True
-                        raise AccessError(_("Authenticated and Connected your HubSpot Account Successfully"))
                 else:
                     print(
                         f"Failed to fetch owner details. Status code: {response.status_code}")
@@ -162,6 +161,7 @@ class HubspotConnector(models.Model):
                 return None
         else:
             self.connection = False
+            print("false")
 
     def action_contact_sync(self):
         """
@@ -275,6 +275,26 @@ class HubspotConnector(models.Model):
                 'label': 'Image String',
                 'type': 'string'
             },
+            {
+                'name': 'odoo_date',
+                'label': 'Odoo Date',
+                'type': 'datetime'
+            },
+            {
+                'name': 'odoo_ref',
+                'label': 'Odoo Ref',
+                'type': 'string'
+            },
+            {
+                'name': 'odoo_vat',
+                'label': 'Odoo Vat',
+                'type': 'string'
+            },
+            {
+                'name': 'odoo_active',
+                'label': 'Odoo Active',
+                'type': 'boolean'
+            },
         ]
         for field in partner_fields:
             # Check each field in partner_fields exists in HubSpot or not
@@ -331,7 +351,18 @@ class HubspotConnector(models.Model):
                     "odoo_mail": rec.email,
                     "odoo_image_string": base64.b64encode(rec.image_1920).
                     decode('utf-8') if (rec.image_1920 and len(base64.b64encode(
-                        rec.image_1920).decode('utf-8')) < 65500) else None
+                        rec.image_1920).decode('utf-8')) < 65500) else None,
+
+                    "jobtitle": rec.function,
+                    "address": rec.street + "," + rec.street2 if (rec.street and rec.street2) else (rec.street or rec.street2 or ""),
+                    "city": rec.city,
+                    "zip": rec.zip,
+
+                    "odoo_date": rec.date.strftime('%Y-%m-%dT%H:%M:%SZ'),
+                    "odoo_ref": rec.ref,
+                    "odoo_vat": rec.vat,
+                    "odoo_active": rec.active,
+
                 }
                 api_response = api_client.crm.contacts.basic_api.create(
                     simple_public_object_input_for_create=
@@ -428,7 +459,7 @@ class HubspotConnector(models.Model):
                                 odoo_record.image_1920).decode('utf-8') if (
                                     odoo_record.image_1920 and len(base64.b64encode(
                                     odoo_record.image_1920).decode(
-                                'utf-8')) < 65500) else ""
+                                'utf-8')) < 65500) else "",
                         }
                     })
                     update_success += 1

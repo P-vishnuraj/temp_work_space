@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<odoo>
+    <!--  LIST view of college_class -->
+    <record id="college_class_list_view" model="ir.ui.view">
+        <field name="name">college.class.list</field>
+        <field name="model">college.class</field>
+        <field name="arch" type="xml">
+            <tree string="College Class">
+                <field name="name"/>
+                <field name="semester_id"/>
+                <field name="course"/>
+                <field name="academic_year"/>
+            </tree>
+        </field>
+    </record>
+    <!--  FORM view of college_class -->
+    <record id="college_class_form_view" model="ir.ui.view">
+        <field name="name">college.class.list</field>
+        <field name="model">college.class</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="promotion_class_id"/>
+                        <field name="name" force_save="1"/>
+                        <field name="semester_id"/>
+                        <field name="course"/>
+                        <field name="academic_year"/>
+                    </group>
+                    <notebook>
+                        <page name="class_students" string="Students">
+                            <tree>
+                                <field name="students_ids"/>
+                            </tree>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <!--    College.class Action    -->
+    <record id="college_class" model="ir.actions.act_window">
+        <field name="name">Class</field>
+        <field name="res_model">college.class</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>
