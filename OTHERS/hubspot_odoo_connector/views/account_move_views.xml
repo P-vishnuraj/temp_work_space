@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!--    NEED TO SHOW THE HS ID IN FORM VIEW     -->
+<!--    <record id="account_move_inherit_view_form" model="ir.ui.view">-->
+<!--        <field name="name">account.move.form.inherit</field>-->
+<!--        <field name="model">account.move</field>-->
+<!--        <field name="inherit_id" ref="base.view_company_form"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <xpath expr="//field[@name='vat']" position="after">-->
+<!--                <field name="hs_object_id"/>-->
+<!--                <field name="sync_mode"/>-->
+<!--            </xpath>-->
+<!--        </field>-->
+<!--    </record>-->
+<!--    IMPORTING RECORD    -->
+    <record id="action_hubspot_invoice_import" model="ir.actions.act_window">
+        <field name="name">Invoice Import</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">account.move</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('sync_mode', '=', 'import')]</field>
+        <field name="help" type="html">
+            <p>
+                Odoo helps you track all imported companies from Hubspot.
+            </p>
+        </field>
+    </record>
+    <record id="action_hubspot_invoice_export" model="ir.actions.act_window">
+        <field name="name">Invoice Export</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">account.move</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('sync_mode', '=', 'export')]</field>
+        <field name="help" type="html">
+            <p>
+                Odoo helps you track all exported companies to Hubspot.
+            </p>
+        </field>
+    </record>
+
+    <!--  Menu  -->
+    <menuitem name="Invoice" id="menu_hubspot_invoice" parent="menu_hubspot_root"/>
+    <menuitem name="Invoice Import" id="menu_hs_invoice_import" action="action_hubspot_invoice_import"
+              parent="menu_hubspot_invoice"/>
+    <menuitem name="Invoice Export" id="menu_hs_invoice_export" action="action_hubspot_invoice_export"
+              parent="menu_hubspot_invoice"/>
+</odoo>

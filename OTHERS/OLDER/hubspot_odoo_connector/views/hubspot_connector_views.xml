@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--  Form View  -->
+    <record id="hubspot_connector_view_form" model="ir.ui.view">
+        <field name="name">hubspot.connector.view.form</field>
+        <field name="model">hubspot.connector</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                    </div>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name" placeholder="e.g. Hubspot Instance" required="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Authorization">
+                            <field name="access_key" string="Access Token"/>
+                            <field name="owner_id"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string=" Sync Contacts">
+                            <group>
+                                <group>
+                                    <field name="import_contacts"/>
+                                    <field name="export_contacts"/>
+                                </group>
+                                <group>
+                                    <button name="import_hubspot_partner" type="object" string="Import Contacts"
+                                            attrs="{'invisible': [('import_contacts', '=', False)]}"
+                                            class="oe_highlight"/>
+                                </group>
+                                <br/>
+                                <group>
+                                    <field name="last_import_date"/>
+                                    <field name="last_export_date"/>
+                                </group>
+                                <group>
+                                    <button name="action_export_partner" type="object" string="Export Contacts"
+                                            attrs="{'invisible': [('export_contacts', '=', False)]}"
+                                            class="oe_highlight"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Sync Company">
+                            <group>
+                                <group>
+                                    <field name="import_company"/>
+                                    <field name="export_company"/>
+                                </group>
+                                <group>
+                                    <button name="action_import_company" type="object" string="Import Company"
+                                            attrs="{'invisible': [('import_company', '=', False)]}"
+                                            class="oe_highlight" groups="hubspot_odoo_connector.group_hubspot_manager"/>
+                                </group>
+                                <br/>
+                                <group>
+                                    <field name="last_import_date_company"/>
+                                    <field name="last_export_date_company"/>
+                                </group>
+                                <group>
+                                    <button name="action_export_company" type="object" string="Export Company"
+                                            attrs="{'invisible': [('export_company', '=', False)]}"
+                                            class="oe_highlight" groups="hubspot_odoo_connector.group_hubspot_manager"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Sync Deals">
+                            <group>
+                                <group>
+                                    <field name="import_deals"/>
+                                    <field name="export_deals"/>
+
+                                </group>
+                                <group>
+                                    <button name="action_import_deals" type="object"
+                                            string="Import Deals"
+                                            attrs="{'invisible': [('import_deals', '=', False)]}" class="oe_highlight"
+                                            groups="hubspot_odoo_connector.group_hubspot_manager"
+                                    />
+                                </group>
+                                <br/>
+                                <group>
+                                    <field name="last_import_deal_date"/>
+                                    <field name="last_export_deal_date"/>
+                                </group>
+                                <group>
+                                    <button name="action_export_deals" type="object"
+                                            string="Export Deals"
+                                            attrs="{'invisible': [('export_deals', '=', False)]}" class="oe_highlight"
+                                            groups="hubspot_odoo_connector.group_hubspot_manager"
+                                    />
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!--  Action  -->
+    <record id="action_hubspot_connector" model="ir.actions.act_window">
+        <field name="name">Hubspot Connector</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hubspot.connector</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!--  Parent Menu  -->
+    <menuitem name="HubSpot" id="menu_hubspot_root"/>
+    <!--  Sub Menu  -->
+    <menuitem name="HubSpot" id="menu_hubspot" action="action_hubspot_connector" parent="menu_hubspot_root"/>
+    <menuitem name="Configuration" id="menu_hs_configuration" parent="menu_hubspot_root" sequence="100"/>
+</odoo>

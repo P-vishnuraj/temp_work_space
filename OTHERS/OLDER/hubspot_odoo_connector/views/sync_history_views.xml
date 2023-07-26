@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--  Tree View  -->
+    <record id="hubspot_sync_history_view_tree" model="ir.ui.view">
+        <field name="name">hubspot.sync.history.view.tree</field>
+        <field name="model">hubspot.sync.history</field>
+        <field name="arch" type="xml">
+            <tree string="History">
+                <field name="res_model_id"/>
+                <field name="sync_mode"/>
+                <field name="date"/>
+                <field name="count"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--  Form View  -->
+    <record id="view_hubspot_sync_history_form" model="ir.ui.view">
+        <field name="name">hubspot.sync.history.form</field>
+        <field name="model">hubspot.sync.history</field>
+        <field name="arch" type="xml">
+            <form string="Job">
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="success,error"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="res_model_id"/>
+                            <field name="sync_mode"/>
+                            <field name="error"/>
+                        </group>
+                        <group>
+                            <field name="date"/>
+                            <field name="count"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!--  Action  -->
+    <record id="action_hs_sync_history" model="ir.actions.act_window">
+        <field name="name">Hubspot Sync History</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hubspot.sync.history</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <!--  Menu Sync History  -->
+    <menuitem name="Sync History" id="menu_hs_history" action="action_hs_sync_history" parent="menu_hs_configuration"/>
+</odoo>

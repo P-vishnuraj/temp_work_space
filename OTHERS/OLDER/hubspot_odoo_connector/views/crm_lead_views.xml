@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+     This XML code represents modifications to the Odoo CRM lead view and actions related to Hubspot deals export and import -->
+    <record id="crm_lead_view_inherit_form" model="ir.ui.view">
+        <field name="name">crm.lead.inherit.view.form</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='company_id']"
+                   position="after">
+                <field name="hs_object_id"/>
+                <field name="sync_mode"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="hubspot_deals_export_action">
+        <field name="name">Opportunities</field>
+        <field name="res_model">crm.lead</field>
+        <field name="view_mode">kanban,tree,graph,pivot,form,calendar,activity</field>
+        <field name="domain">[('sync_mode', '=', 'export')]</field>
+        <field name="help" type="html">
+            <p>
+                Odoo helps you track all exported leads from Hubspot.
+            </p>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="hubspot_deals_import_action">
+        <field name="name">Opportunities</field>
+        <field name="res_model">crm.lead</field>
+        <field name="view_mode">kanban,tree,graph,pivot,form,calendar,activity</field>
+        <field name="domain">[('sync_mode', '=', 'import')]</field>
+        <field name="help" type="html">
+            <p>
+                Odoo helps you track all exported leads to Hubspot.
+            </p>
+        </field>
+    </record>
+    <!--  Menu  -->
+    <menuitem name="Deals" id="menu_hubspot_deals" parent="menu_hubspot_root"/>
+    <menuitem name="Deals Import" id="menu_hs_deals_import" action="hubspot_deals_import_action"
+              parent="menu_hubspot_deals"/>
+    <menuitem name="Deals Export" id="menu_hs_deals_export" action="hubspot_deals_export_action"
+              parent="menu_hubspot_deals"/>
+
+</odoo>

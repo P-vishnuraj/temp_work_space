@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_partner_inherit_view_form" model="ir.ui.view">
+        <field name="name">res.partner.vat.inherit.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='vat']" position="after">
+                <field name="hs_object_id"/>
+                <field name="sync_mode"/>
+            </xpath>
+        </field>
+    </record>
+    <!--  Action  -->
+    <record id="action_hubspot_contact_import" model="ir.actions.act_window">
+        <field name="name">Contacts</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">kanban,tree,form,activity</field>
+        <field name="domain">[('sync_mode', '=', 'import')]</field>
+        <field name="help" type="html">
+            <p>
+                Odoo helps you track all imported contacts from Hubspot.
+            </p>
+        </field>
+    </record>
+    <record id="action_hubspot_contact_export" model="ir.actions.act_window">
+        <field name="name">Contacts</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">kanban,tree,form,activity</field>
+        <field name="domain">[('sync_mode', '=', 'export')]</field>
+        <field name="help" type="html">
+            <p>
+                Odoo helps you track all exported contacts to Hubspot.
+            </p>
+        </field>
+    </record>
+
+    <!--  Menu  -->
+    <menuitem name="Contacts" id="menu_hubspot_contacts" parent="menu_hubspot_root"/>
+    <menuitem name="Contacts Import" id="menu_hs_contacts_import" action="action_hubspot_contact_import" parent="menu_hubspot_contacts"/>
+    <menuitem name="Contacts Export" id="menu_hs_contacts_export" action="action_hubspot_contact_export" parent="menu_hubspot_contacts"/>
+</odoo>
