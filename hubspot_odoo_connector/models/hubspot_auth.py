@@ -275,26 +275,6 @@ class HubspotConnector(models.Model):
                 'label': 'Image String',
                 'type': 'string'
             },
-            {
-                'name': 'odoo_date',
-                'label': 'Odoo Date',
-                'type': 'datetime'
-            },
-            {
-                'name': 'odoo_ref',
-                'label': 'Odoo Ref',
-                'type': 'string'
-            },
-            {
-                'name': 'odoo_vat',
-                'label': 'Odoo Vat',
-                'type': 'string'
-            },
-            {
-                'name': 'odoo_active',
-                'label': 'Odoo Active',
-                'type': 'boolean'
-            },
         ]
         for field in partner_fields:
             # Check each field in partner_fields exists in HubSpot or not
@@ -346,23 +326,23 @@ class HubspotConnector(models.Model):
                 properties = {
                     "firstname": rec.name,
                     "lastname": "",
-                    "phone": rec.phone,
-                    "website": rec.website,
                     "odoo_mail": rec.email,
+                    "phone": rec.phone if rec.phone else None,
+                    "company": rec.commercial_company_name or rec.company_name
+                    if rec.commercial_company_name or rec.company_name
+                    else None,
+                    "jobtitle": rec.function if rec.function else None,
+                    "website": rec.website if rec.website else None,
+                    "address": rec.street + "," + rec.street2 if (
+                            rec.street and rec.street2) else (
+                            rec.street or rec.street2 or ""),
+                    "city": rec.city if rec.city else None,
+                    "state": rec.state_id.name if rec.state_id else None,
+                    "zip": rec.zip if rec.zip else None,
+                    "country": rec.country_id.name if rec.country_id else None,
                     "odoo_image_string": base64.b64encode(rec.image_1920).
                     decode('utf-8') if (rec.image_1920 and len(base64.b64encode(
                         rec.image_1920).decode('utf-8')) < 65500) else None,
-
-                    "jobtitle": rec.function,
-                    "address": rec.street + "," + rec.street2 if (rec.street and rec.street2) else (rec.street or rec.street2 or ""),
-                    "city": rec.city,
-                    "zip": rec.zip,
-
-                    "odoo_date": rec.date.strftime('%Y-%m-%dT%H:%M:%SZ') if rec.date else None,
-                    "odoo_ref": rec.ref,
-                    "odoo_vat": rec.vat,
-                    "odoo_active": rec.active,
-
                 }
                 api_response = api_client.crm.contacts.basic_api.create(
                     simple_public_object_input_for_create=
@@ -391,17 +371,21 @@ class HubspotConnector(models.Model):
     def action_import_partner(self):
         """Import contacts from Hubspot"""
         needed_fields = [
-            "firstname", "lastname", "email", "odoo_mail", "hs_object_id",
-            "odoo_image_string"
+            "firstname", "lastname", "email", "phone", "company", "jobtitle",
+            "website",  "address", "city", "state", "zip", "country",
+            "odoo_mail", "odoo_image_string", "hs_object_id"
         ]
         api_client = HubSpot(access_token=self.access_key)
         odoo_partners = self.env['res.partner'].search([]).mapped(
             'hs_object_id')
         hubspot_partners = api_client.crm.contacts.get_all(
             properties=needed_fields)
-        print(hubspot_partners)
+        # print(hubspot_partners)
         partners_to_create = []
         success_count = 0
+        state_dict = {state['name']: state['id'] for state in self.env[
+            'res.country.state'].search_read([], ['id', 'name'])}
+        print(state_dict)
         for rec in hubspot_partners:
             if rec.properties['hs_object_id'] not in odoo_partners:
                 print(rec)
@@ -412,6 +396,14 @@ class HubspotConnector(models.Model):
                     'email': rec.properties['email'] if rec.properties[
                         'email'] else rec.properties[
                         'odoo_mail'] if rec.properties['odoo_mail'] else None,
+                    'phone': rec.properties['phone'],
+                    'function': rec.properties['jobtitle'],
+                    'website': rec.properties['website'],
+                    'street': rec.properties['address'],
+                    'city': rec.properties['city'],
+                    'zip': rec.properties['zip'],
+                    'state_id': state_dict.get(rec.properties['state'], default=None)
+                    # 'country_id':
                     'image_1920': base64.b64decode(
                         rec.properties['odoo_image_string']) if rec.properties[
                         'odoo_image_string'] else None,
@@ -457,9 +449,10 @@ class HubspotConnector(models.Model):
                             "website": odoo_record.website,
                             "odoo_image_string": base64.b64encode(
                                 odoo_record.image_1920).decode('utf-8') if (
-                                    odoo_record.image_1920 and len(base64.b64encode(
+                                    odoo_record.image_1920 and len(
+                                base64.b64encode(
                                     odoo_record.image_1920).decode(
-                                'utf-8')) < 65500) else "",
+                                    'utf-8')) < 65500) else "",
                         }
                     })
                     update_success += 1
@@ -512,7 +505,8 @@ class HubspotConnector(models.Model):
                             'odoo_mail'] if hub_record.properties[
                             'odoo_mail'] else None,
                         'image_1920': base64.b64decode(hub_record.properties[
-                                'odoo_image_string']) if hub_record.properties[
+                                                           'odoo_image_string']) if
+                        hub_record.properties[
                             'odoo_image_string'] else None,
                     }
                     update_success += 1
